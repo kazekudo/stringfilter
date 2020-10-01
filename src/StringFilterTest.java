@@ -42,9 +42,9 @@ public class StringFilterTest {
 
     @Test
     public void asciiStringFilter() {
-        String input = "é";
+        String input = "aeiçouérrr";
         StringFilter filter = new AsciiStringFilter();
         String output = filter.filter(input);
-        assertThat(output, equalTo("?"));
+        assertThat(output, equalTo("aeiourrr"));
     }
 }
