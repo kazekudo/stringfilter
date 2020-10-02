@@ -47,4 +47,24 @@ public class StringFilterTest {
         String output = filter.filter(input);
         assertThat(output, equalTo("aeiourrr"));
     }
+
+    @Test
+    public void filterTest() {
+        String[] input = {"test","2test"};
+        StringFilter filter = new PrefixStringFilter(3);
+        String[] output = Main.filter(input,filter);
+        assertThat(output[0], equalTo("tes"));
+        assertThat(output[1], equalTo("2te"));
+
+    }
+
+    @Test
+    public void CompositeStringFilter() {
+        String input = "aeiçouérrr";
+        StringFilter filter = new CompositeStringFilter(new StringFilter[]{new AsciiStringFilter(), new PrefixStringFilter(6)});
+        String output = filter.filter(input);
+        assertThat(output, equalTo("aeiour"));
+
+    }
+
 }
